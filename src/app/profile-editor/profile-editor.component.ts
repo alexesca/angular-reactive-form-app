@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormArray } from '@angular/forms';
 
 
 @Component({
@@ -17,8 +17,15 @@ export class ProfileEditorComponent implements OnInit {
       city: '',
       state: '',
       zip: ''
-    })
+    }),
+    aliases: this.formBuilder.array([
+      this.formBuilder.control('')
+    ])
   })
+
+  get aliases() {
+    return this.profileForm.get('aliases') as FormArray
+  }
 
   constructor(public formBuilder: FormBuilder) { }
 
@@ -37,5 +44,13 @@ export class ProfileEditorComponent implements OnInit {
       }
     })
   }
+
+  addAlias() {
+    this.aliases.push(
+      this.formBuilder.control('')
+    )
+  }
+
+
 
 }
