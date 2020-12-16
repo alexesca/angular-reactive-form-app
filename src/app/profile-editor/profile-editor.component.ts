@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -9,18 +9,18 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ProfileEditorComponent implements OnInit {
 
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    address: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl('')
+  profileForm = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: '',
+    address: this.formBuilder.group({
+      street: '',
+      city: '',
+      state: '',
+      zip: ''
     })
   })
 
-  constructor() { }
+  constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }

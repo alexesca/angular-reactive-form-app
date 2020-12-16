@@ -1,7 +1,7 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <label>
         First Name:
-        <input type="text" formControlName="firstName">
+        <input type="text" formControlName="firstName" required>
     </label><br>
     <label>
         Last Name:
@@ -33,3 +33,10 @@
     <button type="submit" [disabled]="!profileForm.valid">Submit</button>
     <button (click)="updateProfile()">Update Profile</button>
 </form>
+
+
+{{profileForm.value | json}}
+<br>
+<br>
+<br>
+{{profileForm.status}}
